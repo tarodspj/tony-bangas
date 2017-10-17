@@ -1,0 +1,101 @@
+@import "globals.less";
+@colorBg1:  #000;
+
+@timeFadeLogo:          600ms;
+@delayFadeLogo:         300ms;
+@timeLogo2:             @timeFadeLogo;
+@delayLogo2:            @delayFadeLogo - 100;
+@timeLogo3:             900ms;
+@delayLogo3:            @timeLogo2 + @delayLogo2 + @delayFadeLogo;
+@timeLogo4:             1800ms;
+@delayLogo4:            @timeLogo3 + @delayLogo3 + @delayFadeLogo;
+
+@timeSvgPath:           1800ms;
+@delaySvgPath:          @delayLogo4 + @timeLogo4 + @delayFadeLogo;
+@timeSvgStroke:         1600ms;
+@delaySvgStroke:        @delaySvgPath + 300;
+
+
+body {
+  background-color: @colorBg1;
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.menuSuperior {
+  .size(100%, 100px);
+}
+
+.logoTony{
+  .size(100%, auto);
+  background-color: @colorBg1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: center;
+}
+
+.logoTonyContainer {
+  position: relative;
+  .size(100%, 25vh);
+}
+
+.logoTonyInside {
+  opacity: 0;
+  .size;
+  .absoluteTopLeft;
+}
+.logoTony1{
+  background-image: url('../img/logo_1.png');
+}
+.logoTony2{
+  background-image: url('../img/logo_2.png');
+  z-index: 20;
+  animation: animationIn @timeLogo2 forwards linear @delayLogo2 1;
+}
+.logoTony3{
+  background-image: url('../img/logo_3.png');
+  z-index: 30;
+  animation: animationIn @timeLogo3 forwards linear @delayLogo3 1;
+}
+.logoTony4{
+  background-image: url('../img/logo_4.png');
+  z-index: 40;
+  animation: animationIn @timeLogo4 forwards cubic-bezier(0, 0.24, 0.21, 1.45) @delayLogo4 1;
+}
+.bangas { //esto tendra que ir con flex? ais ais
+  .absoluteBottomRight(0, 25vw);
+  width: 18vw;
+  max-width: 250px;
+  z-index: 50;
+}
+.bangasPath {
+  stroke-width: 1;
+  fill-opacity: 0;
+  fill: transparent;
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  stroke: @colorBangas;
+  //animation: animationDraw @timeLogo4 forwards cubic-bezier(0, 0.24, 0.21, 1.45) @delayLogo4 1;
+  animation: animationDraw @timeSvgPath forwards cubic-bezier(0, 0, 0.2, 1) @delaySvgPath 1, animationStroke @timeSvgStroke forwards ease @delaySvgStroke 1; //animation stroke with tb
+}
+
+
+.no-js {
+  .logoTony1 {
+    background-image: url('../img/logo_4.png');
+  }
+  .bangasPath {
+    stroke-dasharray: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+.animateLogo.animateLogo {
+  -webkit-animation-play-state:         paused;
+  -moz-animation-play-state:            paused;
+  animation-play-state:                 paused;
+}
