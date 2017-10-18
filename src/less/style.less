@@ -1,5 +1,5 @@
 @import "globals.less";
-@colorBg1:  #000;
+
 
 @timeFadeLogo:          600ms;
 @delayFadeLogo:         300ms;
@@ -15,9 +15,6 @@
 @timeSvgStroke:         2000ms;
 @delaySvgStroke:        @delaySvgPath + @timeSvgPath;
 
-@timeShade:             1400ms;
-@delayShade:            @delaySvgStroke + @timeSvgStroke;
-
 body {
   background-color: @colorBg1;
   -webkit-font-smoothing: antialiased;
@@ -29,6 +26,60 @@ a {
 
 .menuSuperior {
   .size(100%, 100px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.listadoMenuSuperior {
+  .size;
+  max-width: 1000px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center; //desde aqui hay que pensar si es para desktop o mobile
+  flex-direction: row; //solo desktop
+  justify-content: flex-start;//solo desktop
+  justify-content: space-around; //=?
+
+}
+.elementoMenuSuperior {
+  font-size: 1.8em;
+  line-height: 1.8em;
+  position: relative;
+  //text-align: center;
+  // margin: 0 10vw 0 0;//desktop
+  //   &:last-child {
+  //     margin: 0 0 0 0;
+  //   }
+    &:nth-child(1) {
+      color: @colorMiami1;
+    }
+    &:nth-child(2) {
+      color: @colorMiami2;
+    }
+    &:nth-child(3) {
+      color: @colorMiami3;
+    }
+    &:hover, &.activeSection {
+      .overEffect {
+        width: 100%;
+      }
+    }
+}
+
+.linkMenu {
+  //.fontMenu;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+}
+
+.overEffect {
+  //.absoluteBottomLeft;
+  display: block;
+  margin: 0 auto;
+  .size(0px, 1px);
+  background-color: white;
+  transition: width.4s ease;
 }
 
 .logoTony{
@@ -92,16 +143,6 @@ a {
   animation: animationDraw @timeSvgPath forwards cubic-bezier(0, 0, 0.2, 1) @delaySvgPath 1, animationStroke @timeSvgStroke forwards ease @delaySvgStroke 2;
 }
 
-// .magicShade {
-//   height: 100%; //por que el logo son 25vh y el margen del bangas son 4vh
-//   width: 100%;
-//   position: absolute;
-//   left: 0;
-//   bottom: ~"calc(-29vh - 100px)";
-//   z-index: 90;
-//   background-color: black;
-//   animation: animationShadeOut @timeShade forwards ease @delayShade 1;
-// }
 
 .soundCloudContainer {
   display: block;
