@@ -10,11 +10,13 @@
 @timeLogo4:             1800ms;
 @delayLogo4:            @timeLogo3 + @delayLogo3 + @delayFadeLogo;
 
-@timeSvgPath:           1800ms;
-@delaySvgPath:          @delayLogo4 + @timeLogo4 + @delayFadeLogo;
-@timeSvgStroke:         1600ms;
-@delaySvgStroke:        @delaySvgPath + 300;
+@timeSvgPath:           @delayLogo4;
+@delaySvgPath:          @delayLogo2 + @timeLogo2 + @delayFadeLogo;
+@timeSvgStroke:         2000ms;
+@delaySvgStroke:        @delaySvgPath + @timeSvgPath;
 
+@timeShade:             1400ms;
+@delayShade:            @delaySvgStroke + @timeSvgStroke;
 
 body {
   background-color: @colorBg1;
@@ -39,6 +41,10 @@ a {
 }
 
 .logoTonyContainer {
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
   position: relative;
   .size(100%, 25vh);
 }
@@ -67,9 +73,12 @@ a {
   animation: animationIn @timeLogo4 forwards cubic-bezier(0, 0.24, 0.21, 1.45) @delayLogo4 1;
 }
 .bangas { //esto tendra que ir con flex? ais ais
-  .absoluteBottomRight(0, 25vw);
-  width: 18vw;
-  max-width: 250px;
+  //.absoluteBottomRight(0, 25vw);
+  // display: flex;
+  margin: 0 0 -3vh 0;
+  width: 23vh;
+  max-width: 550px;
+  min-width: 187px;
   z-index: 50;
 }
 .bangasPath {
@@ -80,9 +89,40 @@ a {
   stroke-dashoffset: 360;
   stroke: @colorBangas;
   //animation: animationDraw @timeLogo4 forwards cubic-bezier(0, 0.24, 0.21, 1.45) @delayLogo4 1;
-  animation: animationDraw @timeSvgPath forwards cubic-bezier(0, 0, 0.2, 1) @delaySvgPath 1, animationStroke @timeSvgStroke forwards ease @delaySvgStroke 1; //animation stroke with tb
+  animation: animationDraw @timeSvgPath forwards cubic-bezier(0, 0, 0.2, 1) @delaySvgPath 1, animationStroke @timeSvgStroke forwards ease @delaySvgStroke 2;
 }
 
+// .magicShade {
+//   height: 100%; //por que el logo son 25vh y el margen del bangas son 4vh
+//   width: 100%;
+//   position: absolute;
+//   left: 0;
+//   bottom: ~"calc(-29vh - 100px)";
+//   z-index: 90;
+//   background-color: black;
+//   animation: animationShadeOut @timeShade forwards ease @delayShade 1;
+// }
+
+.soundCloudContainer {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 16vh 10vw;
+}
+
+.soundCloudList {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+.soundCloudItem {
+  margin-bottom: 4vh;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
 
 .no-js {
   .logoTony1 {
@@ -91,6 +131,9 @@ a {
   .bangasPath {
     stroke-dasharray: 0;
     stroke-dashoffset: 0;
+  }
+  .magicShade {
+    display: none;
   }
 }
 

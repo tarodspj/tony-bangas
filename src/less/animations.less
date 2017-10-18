@@ -5,7 +5,7 @@
   to {
     stroke-dashoffset: 0;
     //fill: @colorBangas;
-    fill-opacity: 1;
+    //fill-opacity: 1;
   }
 }
 @-webkit-keyframes animationDraw {
@@ -26,6 +26,7 @@
     stroke-width: 2;
   }
 }
+
 @-webkit-keyframes animationStroke {
     .animatedStroke;
 }
@@ -37,4 +38,14 @@
 }
 @keyframes animationStroke {
     .animatedStroke;
+}
+
+.animationShadeOut{
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes animationShadeOut {
+    .animationShadeOut;
 }
