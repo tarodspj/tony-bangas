@@ -60,7 +60,8 @@ a {
     &:nth-child(3) {
       color: @colorMiami3;
     }
-    &:hover, &.activeSection {
+    &:hover, &:active,
+    &.activeSection {
       .overEffect {
         width: 100%;
       }
@@ -173,11 +174,25 @@ a {
     stroke-dasharray: 0;
     stroke-dashoffset: 0;
   }
-  .magicShade {
-    display: none;
-  }
 }
 
+
+@media (max-width: 450px) {
+
+  .menuSuperior {
+    height: auto;
+  }
+  .listadoMenuSuperior {
+    flex-direction: column;
+  }
+  .elementoMenuSuperior {
+    padding-top: 1em;
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+}
 .animateLogo.animateLogo {
   -webkit-animation-play-state:         paused;
   -moz-animation-play-state:            paused;
