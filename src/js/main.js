@@ -16,6 +16,12 @@ function startAnimation( animation) {
 	}
 }
 
+function listeners(){
+  $('#listenerMenu').on('click', function(){
+    $('#menuSuperior').toggleClass('uncollapsedMenu');
+  });
+}
+
 $(document).ready(function() {
   isMob = detectmob(); //check if we are in a mobile
   if(isMob) {
@@ -24,5 +30,5 @@ $(document).ready(function() {
     console.log('pc');
   }
   startAnimation('animateLogo'); // when everything is loaded I start the logo animation
-
+  listeners();
 });

@@ -130,7 +130,7 @@ gulp.task('minify-js', function(){
 //images
 
 gulp.task('image-min', function () {
-    return gulp.src(Ruta.src + Ruta.img + '**/*.{jpg,png}')
+    return gulp.src(Ruta.src + Ruta.img + '**/*.{jpg,png,svg}')
       .pipe(newer(destino + Ruta.img))
       .pipe(imagemin({
           progressive: false,

@@ -17,31 +17,38 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- endbuild -->
   </head>
-  <body>
-    <div id="menuSuperior" class="menuSuperior">
+  <body id="home">
+    <div id="menuSuperior" class="menuSuperior collapsedMenu"><!--js[uncollapsedMenu]-->
       <ul id="listadoMenuSuperior" class="listadoMenuSuperior">
-        <li class="elementoMenuSuperior activeSection">
+        <li id="listenerMenu" class="elementoMenuSuperior listenerMenu">
+          <span class="linkMenu" id="goOpen">
+            <span class="iconoMenu"></span>
+            Menu
+            <!-- <span class="overEffect"></span> -->
+          </span>
+        </li>
+        <li class="elementoMenuSuperior goSection activeSection">
           <a href="#" class="linkMenu" id="goHome">
             Home
+            <span class="overEffect"></span>
           </a>
-          <span class="overEffect"></span>
         </li>
-        <li class="elementoMenuSuperior">
+        <li class="elementoMenuSuperior goSection">
           <a href="#" class="linkMenu" id="goAbout">
             About
+            <span class="overEffect"></span>
           </a>
-          <span class="overEffect"></span>
         </li>
-        <li class="elementoMenuSuperior">
+        <li class="elementoMenuSuperior goSection">
           <a href="#" class="linkMenu" id="goContact">
             Contact
+            <span class="overEffect"></span>
           </a>
-          <span class="overEffect"></span>
         </li>
       </ul>
     </div>
     <!-- los logos con brillos uno tras otro animado con css -->
-    <div class="logoTony logoTonyContainer logoTony1">
+    <div class="logoTonyContainer logoTony1">
       <!-- <img src="./img/logo_1.png" alt="tony" class="logoTonyImg" /> -->
       <div class="logoTony logoTonyInside logoTony2 animateLogo"></div>
       <div class="logoTony logoTonyInside logoTony3 animateLogo"></div>
@@ -58,7 +65,7 @@
       </svg>
     </div><!-- /logoTonyContainer -->
 
-    <div id="soundCloudContainer" class="soundCloudContainer">
+    <div id="soundCloudContainer" class="soundCloudContainer section">
       <ul id="soundCloudList" class="soundCloudList">
         <li class="soundCloudItem">
           <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/120755959&amp;color=%23e800e3&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"></iframe>
@@ -74,6 +81,10 @@
         </li>
       </ul>
     </div><!--/soundCloudContainer-->
+
+    <div id="soundCloudContainer" class="soundCloudContainer section">
+
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- build:js -->

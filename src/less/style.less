@@ -15,6 +15,10 @@
 @timeSvgStroke:         2000ms;
 @delaySvgStroke:        @delaySvgPath + @timeSvgPath;
 
+
+
+@menuHeight:            100px;
+
 body {
   background-color: @colorBg1;
   -webkit-font-smoothing: antialiased;
@@ -25,32 +29,23 @@ a {
 }
 
 .menuSuperior {
-  .size(100%, 100px);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  .size(100%, @menuHeight);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: @colorBg1;
+  box-shadow: 0px 9px 23px -3px rgba(0,0,0,0.71);
+  z-index: 100;
 }
 .listadoMenuSuperior {
-  .size;
+  width: 100%;
   max-width: 1000px;
-  position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center; //desde aqui hay que pensar si es para desktop o mobile
-  flex-direction: row; //solo desktop
-  justify-content: flex-start;//solo desktop
-  justify-content: space-around; //=?
-
 }
+
 .elementoMenuSuperior {
-  font-size: 1.8em;
-  line-height: 1.8em;
+  font-size: 30px;
   position: relative;
-  //text-align: center;
-  // margin: 0 10vw 0 0;//desktop
-  //   &:last-child {
-  //     margin: 0 0 0 0;
-  //   }
     &:nth-child(1) {
       color: @colorMiami1;
     }
@@ -59,6 +54,9 @@ a {
     }
     &:nth-child(3) {
       color: @colorMiami3;
+    }
+    &:nth-child(4) {
+      color: @colorMiami1;
     }
     &:hover, &:active,
     &.activeSection {
@@ -83,8 +81,14 @@ a {
   transition: width.4s ease;
 }
 
-.logoTony{
-  .size(100%, auto);
+.logoTonyContainer {
+  display: flex;
+  height: 23vh;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  margin-top: @menuHeight; //height of the menu
   background-color: @colorBg1;
   background-position: center;
   background-repeat: no-repeat;
@@ -92,13 +96,13 @@ a {
   text-align: center;
 }
 
-.logoTonyContainer {
-  display: flex;
-  // flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  position: relative;
-  .size(100%, 25vh);
+.logoTony{
+  .size(100%, auto);
+  background-color: @colorBg1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: center;
 }
 
 .logoTonyInside {
@@ -144,7 +148,6 @@ a {
   animation: animationDraw @timeSvgPath forwards cubic-bezier(0, 0, 0.2, 1) @delaySvgPath 1, animationStroke @timeSvgStroke forwards ease @delaySvgStroke 2;
 }
 
-
 .soundCloudContainer {
   display: block;
   position: relative;
@@ -166,6 +169,75 @@ a {
   }
 }
 
+
+
+@media (min-width: 450px) {
+
+  .menuSuperior {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .listadoMenuSuperior {
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center; //desde aqui hay que pensar si es para desktop o mobile
+    flex-direction: row; //solo desktop
+    justify-content: flex-start;//solo desktop
+    justify-content: space-around; //=?
+  }
+  .elementoMenuSuperior {
+    line-height: 60px;
+  }
+  .listenerMenu {
+    display: none;
+  }
+
+} // media desktop
+
+@media (max-width: 450px) {
+
+  .menuSuperior {
+    display: block;
+    overflow: hidden;
+    transition: height .7s ease-in;
+    &.uncollapsedMenu {
+      height: 100%;
+      .iconoMenu {
+        transform: rotate(0deg);
+      }
+      .listenerMenu {
+        color: white;
+      }
+    }
+  }
+  .iconoMenu {
+    display: block;
+    .size(21px, 100%);
+    .absoluteTopLeft(0, 4vw);
+    background: url('../img/iconoMenu.svg') center center transparent no-repeat;
+    transform: rotate(-540deg);
+    transition: transform .6s ease;
+  }
+  .listadoMenuSuperior {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .elementoMenuSuperior {
+    line-height: @menuHeight;
+    &.activeSection {
+      background: url('../img/iconoMenu.svg') center bottom transparent no-repeat;
+      background-size: 28px;
+    }
+  }
+  .listenerMenu {
+    transition: color .4s ease;
+  }
+
+} // media mobil
+
 .no-js {
   .logoTony1 {
     background-image: url('../img/logo_4.png');
@@ -176,23 +248,6 @@ a {
   }
 }
 
-
-@media (max-width: 450px) {
-
-  .menuSuperior {
-    height: auto;
-  }
-  .listadoMenuSuperior {
-    flex-direction: column;
-  }
-  .elementoMenuSuperior {
-    padding-top: 1em;
-    &:first-child {
-      padding-top: 0;
-    }
-  }
-
-}
 .animateLogo.animateLogo {
   -webkit-animation-play-state:         paused;
   -moz-animation-play-state:            paused;
