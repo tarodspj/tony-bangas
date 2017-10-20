@@ -1,4 +1,6 @@
 
+var activeSectionMenu = 'activeSection';
+
 function detectmob() {
  if( navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)){
     return true;
@@ -15,11 +17,29 @@ function startAnimation( animation) {
 
 	}
 }
+function toggleMenu(){
+  $('#menuSuperior').toggleClass('uncollapsedMenu');
+}
 
 function listeners(){
   $('#listenerMenu').on('click', function(){
-    $('#menuSuperior').toggleClass('uncollapsedMenu');
+    toggleMenu();
   });
+
+  $('.goSection').on('click', function(){
+    var $this = $(this),
+    whereToGo = $this.attr('data-goto');
+    console.log(whereToGo);
+
+    toggleMenu();
+
+    $('.'+activeSectionMenu).removeClass(activeSectionMenu);
+    $this.addClass(activeSectionMenu);
+    $('html, body').animate({
+        scrollTop: $('#' + whereToGo).offset().top
+    }, 1300);
+  });
+
 }
 
 $(document).ready(function() {

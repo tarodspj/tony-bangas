@@ -27,6 +27,38 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.regularText {
+  .fontText;
+  font-size: 1em;
+  line-height: 1.1em;
+  margin-bottom: 1em;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:nth-child(1) {
+    color: @colorMiami1;
+  }
+  &:nth-child(2) {
+    color: @colorMiami2;
+  }
+  &:nth-child(3) {
+    color: @colorMiami3;
+  }
+}
+
+.titleSection {
+  display: block;
+  .fontMenu;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 2vw;
+}
+.aboutTitle {
+  color: @colorMiami2;
+}
+.contactTitle {
+  color: @colorMiami3;
+}
 
 .menuSuperior {
   .size(100%, @menuHeight);
@@ -67,8 +99,7 @@ a {
 }
 
 .linkMenu {
-  //.fontMenu;
-  font-family: 'Orbitron', sans-serif;
+  .fontMenu;
   font-weight: 700;
 }
 
@@ -84,6 +115,7 @@ a {
 .logoTonyContainer {
   display: flex;
   height: 23vh;
+  margin-bottom: 16vw;
   // flex-direction: column;
   justify-content: center;
   align-items: flex-end;
@@ -148,11 +180,11 @@ a {
   animation: animationDraw @timeSvgPath forwards cubic-bezier(0, 0, 0.2, 1) @delaySvgPath 1, animationStroke @timeSvgStroke forwards ease @delaySvgStroke 2;
 }
 
-.soundCloudContainer {
+.section {
   display: block;
   position: relative;
   overflow: hidden;
-  margin: 16vh 10vw;
+  margin: 0 10vw 6vh 10vw;
 }
 
 .soundCloudList {

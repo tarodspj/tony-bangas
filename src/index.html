@@ -12,12 +12,13 @@
     <script>
       document.documentElement.className = 'js';
     </script>
-    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron|Exo" rel="stylesheet">
     <!-- build:css -->
     <link rel="stylesheet" href="css/style.css">
     <!-- endbuild -->
   </head>
-  <body id="home">
+  <body>
+    <span id="home"></span>
     <div id="menuSuperior" class="menuSuperior collapsedMenu"><!--js[uncollapsedMenu]-->
       <ul id="listadoMenuSuperior" class="listadoMenuSuperior">
         <li id="listenerMenu" class="elementoMenuSuperior listenerMenu">
@@ -27,20 +28,20 @@
             <!-- <span class="overEffect"></span> -->
           </span>
         </li>
-        <li class="elementoMenuSuperior goSection activeSection">
-          <a href="#" class="linkMenu" id="goHome">
+        <li class="elementoMenuSuperior goSection activeSection" data-goto="home">
+          <a href="#home" class="linkMenu" id="goHome">
             Home
             <span class="overEffect"></span>
           </a>
         </li>
-        <li class="elementoMenuSuperior goSection">
-          <a href="#" class="linkMenu" id="goAbout">
+        <li class="elementoMenuSuperior goSection" data-goto="about">
+          <a href="#about" class="linkMenu" id="goAbout">
             About
             <span class="overEffect"></span>
           </a>
         </li>
-        <li class="elementoMenuSuperior goSection">
-          <a href="#" class="linkMenu" id="goContact">
+        <li class="elementoMenuSuperior goSection" data-goto="contact">
+          <a href="#contact" class="linkMenu" id="goContact">
             Contact
             <span class="overEffect"></span>
           </a>
@@ -82,8 +83,23 @@
       </ul>
     </div><!--/soundCloudContainer-->
 
-    <div id="soundCloudContainer" class="soundCloudContainer section">
+    <div id="aboutContainer" class="aboutContainer section">
+      <strong id="about" class="titleSection aboutTitle">
+        About
+      </strong>
+      <p class="regularText">
+        Lorizzle dolizzle sit amet, things adipiscing yo. Nullizzle sapizzle velizzle, dawg volutpizzle, suscipizzle quizzle, vizzle, pot.
+        <br />
+        Gangsta uhuh ... yih! black. erizzle. Dope izzle dolizzle dapibizzle own yo' tempizzle uhuh ... yih!. Maurizzle fo shizzle nibh yo turpis. Uhuh ... yih! owned go to hizzle. Ghetto eleifend ma nizzle owned. In break it down you son of a bizzle break yo neck, yall dictumst. Donec pimpin'. That's the shizzle tellizzle sure, pretizzle mofo, mattis ac, eleifend phat, nunc. My shizz suscipizzle. Integer semper yippiyo sizzle fo shizzle.
+      </p>
 
+      <p class="regularText">
+        Praesent black mi get down get down fo shizzle mofo bibendum. Tellivizzle lacinia gizzle shit.
+        <br />
+        Crizzle id brizzle leo sodalizzle euismod. Aliquam lobortis, mauris fizzle dapibus we gonna chung, nulla ligula dope metus, izzle venenatis augue dui izzle shizznit. Vivamus away lacizzle id fo shizzle. Fizzle arcu mofo, fermentizzle sizzle break it down, faucibus izzle, placerat ac, fo shizzle. Sizzle fo laorizzle fo shizzle. Vestibulum erat diam, away shit, condimentum uhuh ... yih!, own yo' a, arcu. Morbi get down get down placerizzle cool. Doggy dang erizzle cool tellivizzle. Funky fresh daahng dawg mammasay mammasa mamma oo sa, egestizzle eu, sheezy quis, elementum away, neque. Doggy iaculizzle dawg a orci tincidunt sodales. Fusce sagittis, nulla eget sollicitudizzle mollis, lacizzle sure dope crazy, vitae shiznit augue its fo rizzle break yo neck, yall arcu. Etizzle away lacizzle. Phat sizzle mi. Duis nizzle turpizzle. Vestibulum a my shizz. Sizzle turpis erizzle.
+        <br />
+        Consectetuer doggy, izzle, shizznit yippiyo, pimpin'.
+      </p>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
