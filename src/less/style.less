@@ -57,7 +57,7 @@ a {
   color: @colorMiami2;
 }
 .contactTitle {
-  color: @colorMiami3;
+  color: @colorMiami1;
 }
 
 .menuSuperior {
@@ -198,6 +198,22 @@ a {
   margin-bottom: 4vh;
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+.mailme {
+  .fontText;
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  transition: all 0.9s;
+  text-decoration: none;
+  color: #B6FF00;
+  font-size: 3em;
+  padding: 1em;
+  &:hover {
+    animation: animationNeon 1.5s ease-in-out infinite alternate;
   }
 }
 

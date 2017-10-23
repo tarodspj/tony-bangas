@@ -1,5 +1,6 @@
 
-var activeSectionMenu = 'activeSection';
+var activeSectionMenu = 'activeSection',
+    heightMenu = 0;
 
 function detectmob() {
  if( navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)){
@@ -30,13 +31,14 @@ function listeners(){
     var $this = $(this),
     whereToGo = $this.attr('data-goto');
     console.log(whereToGo);
+    console.log($('#' + whereToGo).offset().top);
 
     toggleMenu();
 
     $('.'+activeSectionMenu).removeClass(activeSectionMenu);
     $this.addClass(activeSectionMenu);
     $('html, body').animate({
-        scrollTop: $('#' + whereToGo).offset().top
+        scrollTop: $('#' + whereToGo).offset().top - heightMenu
     }, 1300);
   });
 
@@ -44,11 +46,14 @@ function listeners(){
 
 $(document).ready(function() {
   isMob = detectmob(); //check if we are in a mobile
+  heightMenu = $('#menuSuperior').height();
+
   if(isMob) {
     console.log('telefono');
   } else {
     console.log('pc');
   }
+
   startAnimation('animateLogo'); // when everything is loaded I start the logo animation
   listeners();
 });
