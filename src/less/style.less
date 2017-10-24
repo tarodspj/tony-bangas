@@ -209,14 +209,41 @@ a {
 
   transition: all 0.9s;
   text-decoration: none;
-  color: #B6FF00;
+  color: @colorMiami3;
   font-size: 3em;
-  padding: 1em;
+  padding: 1vw;
   &:hover {
     animation: animationNeon 1.5s ease-in-out infinite alternate;
+    .mailmeIcon {
+      filter: blur(2px);
+    }
+    .lines {
+      stroke-width: 1;
+    }
+    .linesBlur {
+      stroke-width: 3;
+    }
   }
 }
 
+.mailmeIcon {
+  width: 20vw;
+  display: block;
+  margin: 3vh auto;
+  transition: all .5s ease;
+  .linesIcon {
+    //stroke: @colorMiami1;
+    fill: transparent;
+  }
+  .lines {
+    stroke-width: 0;
+    stroke: lighten(@colorMiami1, 30%);
+  }
+  .linesBlur {
+    stroke-width: 2;
+    stroke: @colorMiami1;
+  }
+}
 
 
 @media (min-width: 450px) {
