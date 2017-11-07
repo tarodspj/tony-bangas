@@ -1,7 +1,18 @@
 
 var activeSectionMenu = 'activeSection',
-    heightMenu = 0;
+    heightMenu = 0,
+    heightSectionsArray = [['home', 0]];
     //i need an array or object with the height of each section as global
+
+$.fn.scrollEnd = function(callback, timeout) {
+  $(this).scroll(function(){
+    var $this = $(this);
+    if ($this.data('scrollTimeout')) {
+      clearTimeout($this.data('scrollTimeout'));
+    }
+    $this.data('scrollTimeout', setTimeout(callback,timeout));
+  });
+};
 
 function detectmob() {
  if( navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)){
@@ -19,8 +30,17 @@ function startAnimation( animation) {
 
 	}
 }
+
 function toggleMenu(){
   $('#menuSuperior').toggleClass('uncollapsedMenu');
+}
+
+function changeActiveSection(newActive){
+  //console.log(newActive);
+  newActive = newActive.replace('Container','');
+  //console.log(newActive);
+  $('.' + activeSectionMenu).removeClass(activeSectionMenu);
+  $('*[data-goto="' + newActive + '"]').addClass(activeSectionMenu);
 }
 
 function listeners(){
@@ -31,74 +51,43 @@ function listeners(){
   $('.goSection').on('click', function(){
     var $this = $(this),
     whereToGo = $this.attr('data-goto');
-    console.log(whereToGo);
-    console.log($('#' + whereToGo).offset().top);
+    // console.log(whereToGo);
+    // console.log($('#' + whereToGo).offset().top);
 
     toggleMenu();
 
-    $('.'+activeSectionMenu).removeClass(activeSectionMenu);
-    $this.addClass(activeSectionMenu);
+    // $('.'+activeSectionMenu).removeClass(activeSectionMenu);
+    // $this.addClass(activeSectionMenu);
+    changeActiveSection($this.attr('data-goto'));
     $('html, body').animate({
         scrollTop: $('#' + whereToGo).offset().top - heightMenu
     }, 1300);
   });
 
   //control the resize to recalculate the height of each section and where im now
+function checkInMenu(fromTop) {
+  var i = 0,
+      manySections = heightSectionsArray.length;
+  for(i==0; i< manySections; i++){
+    if(fromTop > heightSectionsArray[i][1] && fromTop < heightSectionsArray[i+1][1]){
+      changeActiveSection(heightSectionsArray[i][0]); //mal
+    }
+  }
+}
 
-  $(window).scroll(function(){
-     // Get container scroll position
-     var fromTop = $(this).scrollTop()+heightMenu;
-     console.log(fromTop);
-  });
+$(window).scrollEnd(function(){
+  var fromTop = $(this).scrollTop()+heightMenu;
+  //console.log(fromTop);
+  checkInMenu(fromTop);
+}, 200);
+  // $(window).scroll(function(){
+  //    // Get container scroll position
+  //    var fromTop = $(this).scrollTop()+heightMenu;
+  //    console.log(fromTop);
+  // });
 
 }
 
-
-// Cache selectors
-// var lastId,
-//     topMenu = $("#top-menu"),
-//     topMenuHeight = topMenu.outerHeight()+15,
-//     // All list items
-//     menuItems = topMenu.find("a"),
-//     // Anchors corresponding to menu items
-//     scrollItems = menuItems.map(function(){
-//       var item = $($(this).attr("href"));
-//       if (item.length) { return item; }
-//     });
-
-// Bind click handler to menu items
-// so we can get a fancy scroll animation
-// menuItems.click(function(e){
-//   var href = $(this).attr("href"),
-//       offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
-//   $('html, body').stop().animate({
-//       scrollTop: offsetTop
-//   }, 300);
-//   e.preventDefault();
-// });
-
-// Bind to scroll
-//$(window).scroll(function(){
-   // Get container scroll position
-   //var fromTop = $(this).scrollTop()+heightMenu;
-   //console.log(fromTop);
-   // Get id of current scroll item
-  //  var cur = scrollItems.map(function(){
-  //    if ($(this).offset().top < fromTop)
-  //      return this;
-  //  });
-   // Get the id of the current element
-  //  cur = cur[cur.length-1];
-  //  var id = cur && cur.length ? cur[0].id : "";
-  //
-  //  if (lastId !== id) {
-  //      lastId = id;
-       // Set/remove active class
-  //      menuItems
-  //        .parent().removeClass("active")
-  //        .end().filter("[href='#"+id+"']").parent().addClass("active");
-  //  }
-//});
 
 $(document).ready(function() {
   isMob = detectmob(); //check if we are in a mobile
@@ -112,4 +101,18 @@ $(document).ready(function() {
 
   startAnimation('animateLogo'); // when everything is loaded I start the logo animation
   listeners();
+
+  var heightAccumulator = 0;
+  $('.section').each(function( index ) {
+    //console.log($(this).outerHeight());
+    var $this = $(this),
+        id = $this.attr('id'),
+        height = $this.height();
+
+    heightSectionsArray.push([id, height + heightAccumulator]);
+
+    heightAccumulator = height + heightAccumulator;
+
+  });
+
 });
